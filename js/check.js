@@ -19,13 +19,13 @@ function getMessage(a,b) {
 			for (var i = 0; i < b.length; i++) {
 				length += a[i]*b[i];
 			}	
-			return('Я прошел ' + length + ' метров');
+			return('Я прошёл ' + length + ' метров');
 		}
 		var sum = 0;
 		for (var j = 0; j < a.length; j++) {
 			sum += a[j];
 		}
-		return('Я прошел ' + sum + ' шагов');
+		return('Я прошёл ' + sum + ' шагов');
 	}
 
 }
