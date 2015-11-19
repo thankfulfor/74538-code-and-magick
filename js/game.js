@@ -377,111 +377,48 @@
 		/**
 		 * Отрисовка экрана паузы.
 		 */
+		_showMessage: function(text, x, y) {
+				this.ctx.beginPath();
+				this.ctx.moveTo(210,50);
+				this.ctx.lineTo(190,160);
+				this.ctx.lineTo(510,150);
+				this.ctx.lineTo(510,50);
+				this.ctx.lineTo(210,50);
+				this.ctx.closePath();
+				this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+				this.ctx.fill();
+
+				this.ctx.beginPath();
+				this.ctx.moveTo(200,40);
+				this.ctx.lineTo(180,150);
+				this.ctx.lineTo(500,140);
+				this.ctx.lineTo(500,40);
+				this.ctx.lineTo(200,40);
+				this.ctx.closePath();
+				this.ctx.fillStyle = "#fff";
+				this.ctx.fill();
+
+				this.ctx.fillStyle = "#000";
+				this.ctx.font = "16pt PT Mono";
+				this.ctx.fillText(text, x, 100);
+		},
 
 		_drawPauseScreen: function() {
 			switch (this.state.currentStatus) {
 				case Verdict.WIN:
-					this.ctx.beginPath();
-					this.ctx.moveTo(210,50);
-					this.ctx.lineTo(190,160);
-					this.ctx.lineTo(510,150);
-					this.ctx.lineTo(510,50);
-					this.ctx.lineTo(210,50);
-					this.ctx.closePath();
-					this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
-					this.ctx.fill();
-
-					this.ctx.beginPath();
-					this.ctx.moveTo(200,40);
-					this.ctx.lineTo(180,150);
-					this.ctx.lineTo(500,140);
-					this.ctx.lineTo(500,40);
-					this.ctx.lineTo(200,40);
-					this.ctx.closePath();
-					this.ctx.fillStyle = "#fff";
-					this.ctx.fill();
-
-					this.ctx.fillStyle = "#000";
-					this.ctx.font = "16pt PT Mono";
-					this.ctx.fillText("Pendalf the Blue wins!", 210, 100);
+					this._showMessage("Pendalf the Blue wins!", 210);
 					break;
 
 				case Verdict.FAIL:
-					this.ctx.beginPath();
-					this.ctx.moveTo(210,50);
-					this.ctx.lineTo(190,160);
-					this.ctx.lineTo(510,150);
-					this.ctx.lineTo(510,50);
-					this.ctx.lineTo(210,50);
-					this.ctx.closePath();
-					this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
-					this.ctx.fill();
-
-					this.ctx.beginPath();
-					this.ctx.moveTo(200,40);
-					this.ctx.lineTo(180,150);
-					this.ctx.lineTo(500,140);
-					this.ctx.lineTo(500,40);
-					this.ctx.lineTo(200,40);
-					this.ctx.closePath();
-					this.ctx.fillStyle = "#fff";
-					this.ctx.fill();
-
-					this.ctx.fillStyle = "#000";
-					this.ctx.font = "16pt PT Mono";
-					this.ctx.fillText("Pendalf the Blue failed!", 210, 100);
+					this._showMessage("Pendalf the Blue fails!", 205);
 					break;
 
 				case Verdict.PAUSE:
-					this.ctx.beginPath();
-					this.ctx.moveTo(210,50);
-					this.ctx.lineTo(190,160);
-					this.ctx.lineTo(510,150);
-					this.ctx.lineTo(510,50);
-					this.ctx.lineTo(210,50);
-					this.ctx.closePath();
-					this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
-					this.ctx.fill();
-
-					this.ctx.beginPath();
-					this.ctx.moveTo(200,40);
-					this.ctx.lineTo(180,150);
-					this.ctx.lineTo(500,140);
-					this.ctx.lineTo(500,40);
-					this.ctx.lineTo(200,40);
-					this.ctx.closePath();
-					this.ctx.fillStyle = "#fff";
-					this.ctx.fill();
-
-					this.ctx.fillStyle = "#000";
-					this.ctx.font = "16pt PT Mono";
-					this.ctx.fillText("PAUSE", 210, 100);
+					this._showMessage("PAUSE", 300);
 					break;
 
 				case Verdict.INTRO:
-					this.ctx.beginPath();
-					this.ctx.moveTo(210,50);
-					this.ctx.lineTo(190,160);
-					this.ctx.lineTo(510,150);
-					this.ctx.lineTo(510,50);
-					this.ctx.lineTo(210,50);
-					this.ctx.closePath();
-					this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
-					this.ctx.fill();
-
-					this.ctx.beginPath();
-					this.ctx.moveTo(200,40);
-					this.ctx.lineTo(180,150);
-					this.ctx.lineTo(500,140);
-					this.ctx.lineTo(500,40);
-					this.ctx.lineTo(200,40);
-					this.ctx.closePath();
-					this.ctx.fillStyle = "#fff";
-					this.ctx.fill();
-
-					this.ctx.fillStyle = "#000";
-					this.ctx.font = "16pt PT Mono";
-					this.ctx.fillText("Press Space to start", 210, 100);
+					this._showMessage("Press Space to start", 215);
 					break;
 			}
 		},
