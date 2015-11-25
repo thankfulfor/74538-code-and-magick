@@ -4,7 +4,7 @@
   var formContainer = document.querySelector('.overlay-container');
   var formOpenButton = document.querySelector('.reviews-controls-new');
   var formCloseButton = document.querySelector('.review-form-close');
-  
+
   formOpenButton.onclick = function(evt) {
     evt.preventDefault();
     formContainer.classList.remove('invisible');
@@ -19,11 +19,12 @@
   var radioBtnsLength = radioBtns.length;
   var textarea = document.getElementById('review-text');
   var name = document.getElementById('review-name');
-  var checkedValue = radioBtns.value;
+  var checkedValue = document.querySelector('input[name=review-mark]:checked').value;
   var reviewFieldsText = document.querySelector('.review-fields-text');
   var reviewFieldsName = document.querySelector('.review-fields-name');
   var reviewFields = document.querySelector('.review-fields');
   var submitButton = document.querySelector('.review-submit');
+
 
   function validation() {
     if (checkedValue < 3) {
@@ -51,6 +52,8 @@
     }
   }
 
+  submitButton.setAttribute('disabled', 'disabled');
+
   for (var j = 0; j < radioBtnsLength; j++) {
     radioBtns[j].onchange = function() {
       if (this.value !== checkedValue) {
@@ -67,5 +70,5 @@
   textarea.onchange = function() {
     validation();
   };
-  
+
 })();
