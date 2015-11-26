@@ -19,11 +19,13 @@
   var radioBtnsLength = radioBtns.length;
   var textarea = document.getElementById('review-text');
   var name = document.getElementById('review-name');
+  var nameValue = document.getElementById('review-name').value;
   var checkedValue = document.querySelector('input[name=review-mark]:checked').value;
   var reviewFieldsText = document.querySelector('.review-fields-text');
   var reviewFieldsName = document.querySelector('.review-fields-name');
   var reviewFields = document.querySelector('.review-fields');
   var submitButton = document.querySelector('.review-submit');
+  var myBD = 463968000;
 
 
   function validation() {
@@ -52,7 +54,6 @@
     }
   }
 
-  submitButton.setAttribute('disabled', 'disabled');
 
   for (var j = 0; j < radioBtnsLength; j++) {
     radioBtns[j].onchange = function() {
@@ -63,6 +64,8 @@
     };
   }
 
+  validation();
+
   name.onchange = function() {
     validation();
   };
@@ -70,5 +73,14 @@
   textarea.onchange = function() {
     validation();
   };
+
+
+  // //Куки
+  // submitButton.onsubmit = function(evt) {
+  //   evt.PreventDefault(); //не даём отправить форму до тех пор, пока не запишем данные в куки
+  //   document.cookie = 'mark= ' + checkedValue + ' ;expires=' + x;
+  //   document.cookie = 'name= ' + nameValue + ' ;expires=' + x;
+  //   x = (2today - myBD).toGMTString()
+  // }
 
 })();
