@@ -377,19 +377,46 @@
     /**
      * Отрисовка экрана паузы.
      */
+    _showMessage: function(text, x) {
+      this.ctx.beginPath();
+      this.ctx.moveTo(210, 50);
+      this.ctx.lineTo(190, 160);
+      this.ctx.lineTo(510, 150);
+      this.ctx.lineTo(510, 50);
+      this.ctx.lineTo(210, 50);
+      this.ctx.closePath();
+      this.ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+      this.ctx.fill();
+      this.ctx.beginPath();
+      this.ctx.moveTo(200, 40);
+      this.ctx.lineTo(180, 150);
+      this.ctx.lineTo(500, 140);
+      this.ctx.lineTo(500, 40);
+      this.ctx.lineTo(200, 40);
+      this.ctx.closePath();
+      this.ctx.fillStyle = '#fff';
+      this.ctx.fill();
+      this.ctx.fillStyle = '#000';
+      this.ctx.font = '16pt PT Mono';
+      this.ctx.fillText(text, x, 100);
+    },
+
     _drawPauseScreen: function() {
       switch (this.state.currentStatus) {
         case Verdict.WIN:
-          console.log('you have won!');
+          this._showMessage('Pendalf the Blue wins!', 210);
           break;
+
         case Verdict.FAIL:
-          console.log('you have failed!');
+          this._showMessage('Pendalf the Blue fails!', 205);
           break;
+
         case Verdict.PAUSE:
-          console.log('game is on pause!');
+          this._showMessage('PAUSE', 300);
           break;
+
         case Verdict.INTRO:
-          console.log('welcome to the game! Press Space to start');
+          this._showMessage('Press Space to start', 215);
           break;
       }
     },
