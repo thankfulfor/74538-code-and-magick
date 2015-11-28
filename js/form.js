@@ -19,11 +19,12 @@
   var radioBtnsLength = radioBtns.length;
   var textarea = document.getElementById('review-text');
   var name = document.getElementById('review-name');
-  var checkedValue = document.querySelector('input[name=review-mark]:checked').value;
-  var reviewFieldsText = document.querySelector('.review-fields-text');
-  var reviewFieldsName = document.querySelector('.review-fields-name');
-  var reviewFields = document.querySelector('.review-fields');
+  var checkedValue = radioBtns.value;
+
   var submitButton = document.querySelector('.review-submit');
+  var reviewFields = document.querySelector('.review-fields');
+  var reviewFieldsText = reviewFields.querySelector('.review-fields-text');
+  var reviewFieldsName = reviewFields.querySelector('.review-fields-name');
 
   function validation() {
     if (checkedValue < 3) {
@@ -37,7 +38,10 @@
     if (name.value !== '') {
       reviewFieldsName.style.display = 'none';
 
-      if (checkedValue < 3 && textarea.value !== '' || checkedValue >= 3) {
+      if (
+          checkedValue < 3 && textarea.value !== '' ||
+          checkedValue >= 3
+      ) {
         reviewFields.style.display = 'none';
         submitButton.removeAttribute('disabled');
       } else {
