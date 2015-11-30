@@ -26,6 +26,11 @@
   var reviewFieldsText = reviewFields.querySelector('.review-fields-text');
   var reviewFieldsName = reviewFields.querySelector('.review-fields-name');
 
+  var today = +Date.now(); // сегодня
+  var myBD = +Date(2015, 8, 14); // 14.09.2015
+  var expireDate = +Date.now() + +Date(today * 2 - myBD);
+
+
   function validation() {
     if (checkedValue < 3) {
       textarea.required = true;
@@ -60,6 +65,7 @@
       if (this.value !== checkedValue) {
         checkedValue = this.value;
         validation();
+        document.cookie = 'cookiesRating=' + this.value + '; expires=' + (new Date(expireDate).toUTCString());
       }
     };
   }
@@ -68,10 +74,13 @@
 
   name.onchange = function() {
     validation();
+    document.cookie = 'cookiesName=' + name.value + '; expires=' + (new Date(expireDate).toUTCString());
   };
 
   textarea.onchange = function() {
     validation();
   };
+
+  name.value = docCookies.getItem('cookiesName');
 
 })();
