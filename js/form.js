@@ -24,9 +24,6 @@
   var reviewFields = document.querySelector('.review-fields');
   var reviewFieldsText = reviewFields.querySelector('.review-fields-text');
   var reviewFieldsName = reviewFields.querySelector('.review-fields-name');
-  var today = +Date.now(); // сегодня
-  var myBD = +Date(2015, 8, 14); // 14.09.2015
-  var expireDate = +Date.now() + +Date(today * 2 - myBD);
 
   function validation() {
     if (checkedValue < 3) {
