@@ -19,7 +19,7 @@
   var radioBtnsLength = radioBtns.length;
   var textarea = document.getElementById('review-text');
   var name = document.getElementById('review-name');
-  var checkedValue = radioBtns.value;
+  var checkedValue = document.querySelector('input[name = review-mark]:checked').value; 
 
   var submitButton = document.querySelector('.review-submit');
   var reviewFields = document.querySelector('.review-fields');
