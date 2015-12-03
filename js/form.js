@@ -19,17 +19,35 @@
   var radioBtnsLength = radioBtns.length;
   var textarea = document.getElementById('review-text');
   var name = document.getElementById('review-name');
-  var checkedValue = document.querySelector('input[name = review-mark]:checked').value; 
-
+  var checkedValue = document.querySelector('input[name = review-mark]:checked').value;
   var submitButton = document.querySelector('.review-submit');
   var reviewFields = document.querySelector('.review-fields');
   var reviewFieldsText = reviewFields.querySelector('.review-fields-text');
   var reviewFieldsName = reviewFields.querySelector('.review-fields-name');
+  var today = new Date();
+  var currentDate = +Date.now(); // в милисекундах текущее время от 01,01,1970
+  var yearToExp = null;
 
-  var today = +Date.now(); // сегодня
-  var myBD = +Date(2015, 8, 14); // 14.09.2015
-  var expireDate = +Date.now() + +Date(today * 2 - myBD);
+  // месяцы до сентября
+  if (today.getMonth() < 8) {
+    yearToExp = today.getFullYear() - 1;
+  }
 
+  // проверка сентября
+  if (today.getMonth() === 8 && today.getDate() > 14) {
+    yearToExp = today.getFullYear();
+  } else {
+    yearToExp = today.getFullYear() - 1;
+  }
+
+  // проверка после сентября
+  if (today.getMonth() > 8) {
+    yearToExp = today.getFullYear();
+  }
+
+  var myBirthdayDate = +(new Date(yearToExp, 7, 13));// милисекунды от 01,01,1970 до моего др в году
+  var raznitsa = (currentDate * 2) - myBirthdayDate;
+  var expireDate = Math.round(raznitsa); // число милисекунд
 
   function validation() {
     if (checkedValue < 3) {
