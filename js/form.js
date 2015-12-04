@@ -24,30 +24,13 @@
   var reviewFields = document.querySelector('.review-fields');
   var reviewFieldsText = reviewFields.querySelector('.review-fields-text');
   var reviewFieldsName = reviewFields.querySelector('.review-fields-name');
+  var currentDate = +Date.now();
   var today = new Date();
-  var currentDate = +Date.now(); // в милисекундах текущее время от 01,01,1970
-  var yearToExp = null;
-
-  // месяцы до сентября
-  if (today.getMonth() < 8) {
-    yearToExp = today.getFullYear() - 1;
-  }
-
-  // проверка сентября
-  if (today.getMonth() === 8 && today.getDate() > 14) {
-    yearToExp = today.getFullYear();
-  } else {
-    yearToExp = today.getFullYear() - 1;
-  }
-
-  // проверка после сентября
-  if (today.getMonth() > 8) {
-    yearToExp = today.getFullYear();
-  }
-
-  var myBirthdayDate = +(new Date(yearToExp, 7, 13));// милисекунды от 01,01,1970 до моего др в году
-  var raznitsa = (currentDate * 2) - myBirthdayDate;
-  var expireDate = Math.round(raznitsa); // число милисекунд
+  var currentYear = today.getFullYear();
+  var currentYearBD = new Date(currentYear, 8, 14);
+  var lastBD = new Date(today < currentYearBD ? currentYear - 1 : currentYear, 8, 14).getTime();
+  var raznitsa = (currentDate * 2) - lastBD;
+  var expireDate = Math.round(raznitsa);
 
   function validation() {
     if (checkedValue < 3) {
@@ -61,10 +44,7 @@
     if (name.value !== '') {
       reviewFieldsName.style.display = 'none';
 
-      if (
-          checkedValue < 3 && textarea.value !== '' ||
-          checkedValue >= 3
-      ) {
+      if (checkedValue < 3 && textarea.value !== '' || checkedValue >= 3) {
         reviewFields.style.display = 'none';
         submitButton.removeAttribute('disabled');
       } else {
