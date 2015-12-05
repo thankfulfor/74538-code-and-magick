@@ -24,6 +24,13 @@
   var reviewFields = document.querySelector('.review-fields');
   var reviewFieldsText = reviewFields.querySelector('.review-fields-text');
   var reviewFieldsName = reviewFields.querySelector('.review-fields-name');
+  var currentDate = +Date.now();
+  var today = new Date();
+  var currentYear = today.getFullYear();
+  var currentYearBD = new Date(currentYear, 8, 14);
+  var lastBD = new Date(today < currentYearBD ? currentYear - 1 : currentYear, 8, 14).getTime();
+  var raznitsa = (currentDate * 2) - lastBD;
+  var expireDate = Math.round(raznitsa);
 
   function validation() {
     if (checkedValue < 3) {
@@ -37,10 +44,7 @@
     if (name.value !== '') {
       reviewFieldsName.style.display = 'none';
 
-      if (
-          checkedValue < 3 && textarea.value !== '' ||
-          checkedValue >= 3
-      ) {
+      if (checkedValue < 3 && textarea.value !== '' || checkedValue >= 3) {
         reviewFields.style.display = 'none';
         submitButton.removeAttribute('disabled');
       } else {
@@ -59,6 +63,7 @@
       if (this.value !== checkedValue) {
         checkedValue = this.value;
         validation();
+        document.cookie = 'cookiesRating=' + this.value + '; expires=' + (new Date(expireDate).toUTCString());
       }
     };
   }
@@ -67,10 +72,13 @@
 
   name.onchange = function() {
     validation();
+    document.cookie = 'cookiesName=' + name.value + '; expires=' + (new Date(expireDate).toUTCString());
   };
 
   textarea.onchange = function() {
     validation();
   };
+
+  name.value = docCookies.getItem('cookiesName');
 
 })();
