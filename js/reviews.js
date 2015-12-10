@@ -15,7 +15,6 @@
 
   // 2. для каждого элемента создать DOM-элемент на основе шаблона
   function getElementFromTemplate(item) {
-
     var avatar = new Image();
     if ('content' in template) {
       var element = template.content.children[0].cloneNode(true);
@@ -26,20 +25,28 @@
     var oldAvatar = element.querySelector('.review-author');
     var ratingBlock = element.querySelector('.review-rating');
     var ratingStar = item.rating;
+    var ratingStarString = null;
 
     // проверяем рейтинги
-    if (ratingStar === 2) {
-      ratingBlock.classList.add('review-rating-two');
+    switch (ratingStar) {
+      case 2:
+        ratingStarString = 'two';
+        break;
+
+      case 3:
+        ratingStarString = 'three';
+        break;
+
+      case 4:
+        ratingStarString = 'four';
+        break;
+
+      case 5:
+        ratingStarString = 'five';
+        break;
     }
-    if (ratingStar === 3) {
-      ratingBlock.classList.add('review-rating-three');
-    }
-    if (ratingStar === 4) {
-      ratingBlock.classList.add('review-rating-four');
-    }
-    if (ratingStar === 5) {
-      ratingBlock.classList.add('review-rating-five');
-    }
+
+    ratingBlock.classList.add('review-rating-' + ratingStarString);
 
     element.querySelector('.review-text').textContent = item.description;
 
@@ -47,7 +54,6 @@
       avatar.width = '124';
       avatar.height = '124';
       element.replaceChild(avatar, oldAvatar);
-
       filter.classList.remove('invisible');
     };
 
